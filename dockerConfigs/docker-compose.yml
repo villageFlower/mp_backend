@@ -1,0 +1,58 @@
+version: '3.4'
+
+services:
+  
+  api:
+    image: ghcr.io/notsotech/shop_api:lastest
+    container_name: shop_api
+    ports:
+      - 8888:8888
+    environment:
+      - DB_HOST=139.59.219.20
+      - DB_PORT=3306
+      - DB_NAME=gaoqianqian_full
+      - DB_PWD=zbylycwzk3pgaoqianqian!
+      - EXPOSE_PORT=8888
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    ports:
+      - 3306:3306
+    volumes:
+      - /var/docker_persistant_data/mysql:/var/lib/mysql
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      MYSQL_ROOT_PASSWORD: simon1001
+      MYSQL_DATABASE: 2m21479
+      MYSQL_USER: simon
+      MYSQL_PASSWORD: simon1001
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "--protocol=tcp", "-p123456"]
+      timeout: 20s
+      interval: 10s
+      retries: 20
+
+  redis:
+    image: redis
+    volumes:
+      - ./var/docker_persistant_data/redis:/data
+      - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 6379:6379
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 20s
+      interval: 10s
+      retries: 20
+
+  nginxWebUi-server:
+    image: cym1102/nginxwebui:latest
+    volumes:
+      - type: bind
+        source: "/home/nginxWebUI"
+        target: "/home/nginxWebUI"
+    environment:
+      BOOT_OPTIONS: "--server.port=8080"
+    privileged: true
+    network_mode: "host"

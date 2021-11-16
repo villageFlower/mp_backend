@@ -1,0 +1,62 @@
+name: build docker image
+on:
+  push:
+    branches:
+      - 'master'
+jobs:
+  build-push-image:
+    name: build jar
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repo 
+        uses: actions/checkout@v2
+        
+      - name: Set up JDK
+        uses: actions/setup-java@v1
+        with:
+          java-version: 17
+          
+      - name: Build Maven Package
+        run: mvn clean install -DskipTests
+      
+      - name: Build image 
+        run: docker build -t mp/api .
+        
+      - name: Login to GitHub container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: villageFlower
+          password: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
+          
+      - name: Tag image 
+        run: docker tag mp/api ghcr.io/villageFlower/mp_api:lastest
+        
+      - name: Push image to github Container Registry 
+        run: docker push ghcr.io/villageFlower/mp_api:lastest
+
+
+  deploy:
+    needs: build-push-image
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install SSH key of server
+        uses: shimataro/ssh-key-action@v2
+        with:
+          key: ${{ secrets.SSH_KEY }}
+          name: id_rsa-server
+          known_hosts: ${{ secrets.KNOWN_HOSTS_OF_SERVER }}
+          config: |
+            Host server
+              HostName 172.104.57.145
+              User root
+              IdentityFile ~/.ssh/id_rsa-server
+
+      - name: rsync client configs to service server
+        run: rsync -a ./dockerConfigs/ server:/var/deployments/mp_api/
+
+      - name: bring up docker
+        run: ssh server "cd /var/deployments/mp_api/ && docker-compose pull && docker-compose up -d"
