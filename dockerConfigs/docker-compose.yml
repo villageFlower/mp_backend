@@ -2,17 +2,6 @@ version: '3.4'
 
 services:
 
-  api:
-    image: ghcr.io/villageflower/mp_simon:latest
-    container_name: mp_api
-    ports:
-      - 8888:8999
-    environment:
-      - DB_HOST=localhost
-      - DB_PORT=3306
-      - DB_PWD=simon1001
-      - EXPOSE_PORT=8888
-
   mysql:
     image: mysql:8.0
     container_name: mp_mysql
@@ -57,3 +46,19 @@ services:
       BOOT_OPTIONS: "--server.port=8080"
     privileged: true
     network_mode: "host"
+
+  api:
+    image: ghcr.io/villageflower/mp_simon:latest
+    container_name: mp_api
+    ports:
+      - 8888:8888
+    environment:
+      - DB_HOST=127.0.0.1
+      - DB_PORT=3306
+      - DB_PWD=simon1001
+      - EXPOSE_PORT=8888
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
