@@ -40,6 +40,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     ports:
       - 6379:6379
+    command: redis-server --requirepass simon1001
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       timeout: 20s
