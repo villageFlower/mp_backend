@@ -58,7 +58,7 @@ services:
       - DB_PWD=simon1001
       - EXPOSE_PORT=8888
     depends_on:
-      db:
+      mysql:
         condition: service_healthy
       redis:
         condition: service_healthy
