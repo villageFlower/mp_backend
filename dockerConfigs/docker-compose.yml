@@ -40,7 +40,6 @@ services:
     image: cym1102/nginxwebui:latest
     container_name: nginx_server
     volumes:
-      - /etc/letsencrypt/live/admin.mp.simonyc.tech/:/home/certs/
       - /home/nginxWebUI:/home/nginxWebUI
     environment:
       BOOT_OPTIONS: "--server.port=8080"
