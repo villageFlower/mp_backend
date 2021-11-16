@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  
+
   api:
     image: ghcr.io/notsotech/shop_api:lastest
     container_name: shop_api
@@ -49,9 +49,8 @@ services:
   nginxWebUi-server:
     image: cym1102/nginxwebui:latest
     volumes:
-      - type: bind
-        source: "/home/nginxWebUI"
-        target: "/home/nginxWebUI"
+      - /etc/letsencrypt/live/admin.mp.simonyc.tech/:/home/nginxWebUI/certs
+      - /home/nginxWebUI:/home/nginxWebUI
     environment:
       BOOT_OPTIONS: "--server.port=8080"
     privileged: true

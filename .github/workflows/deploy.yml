@@ -30,10 +30,10 @@ jobs:
           password: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           
       - name: Tag image 
-        run: docker tag mp/api ghcr.io/villageFlower/mp_api:lastest
+        run: docker tag mp/api ghcr.io/villageFlower/mp_simon:lastest
         
       - name: Push image to github Container Registry 
-        run: docker push ghcr.io/villageFlower/mp_api:lastest
+        run: docker push ghcr.io/villageFlower/mp_simon:lastest
 
 
   deploy:
@@ -56,7 +56,7 @@ jobs:
               IdentityFile ~/.ssh/id_rsa-server
 
       - name: rsync client configs to service server
-        run: rsync -a ./dockerConfigs/ server:/var/deployments/mp_api/
+        run: rsync -a ./dockerConfigs/ server:/var/deployments/mp_simon/
 
       - name: bring up docker
-        run: ssh server "cd /var/deployments/mp_api/ && docker-compose pull && docker-compose up -d"
+        run: ssh server "cd /var/deployments/mp_simon/ && docker-compose pull && docker-compose up -d"
