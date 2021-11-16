@@ -20,7 +20,7 @@ jobs:
         run: mvn clean install -DskipTests
       
       - name: Build image 
-        run: docker build -t mp/api .
+        run: docker build -t mp .
         
       - name: Login to GitHub container registry
         uses: docker/login-action@v1
@@ -30,10 +30,10 @@ jobs:
           password: ${{ secrets.REGISTRY_ACCESS_TOKEN }}
           
       - name: Tag image 
-        run: docker tag mp/api ghcr.io/villageFlower/mp_simon:lastest
+        run: docker tag mp ghcr.io/villageFlower/mp_simon:latest
         
       - name: Push image to github Container Registry 
-        run: docker push ghcr.io/villageFlower/mp_simon:lastest
+        run: docker push ghcr.io/villageFlower/mp_simon:latest
 
 
   deploy:
