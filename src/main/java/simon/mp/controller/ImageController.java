@@ -9,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import simon.mp.APIList;
 import simon.mp.entity.Image;
 import simon.mp.repo.ImageRepository;
+import simon.mp.reponse.AddImageResp;
 import simon.mp.service.ImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,15 +26,15 @@ public class ImageController {
 
 
     @PostMapping(APIList.UPLOAD_IMAGE)
-    public ResponseEntity<Image> Register(@RequestParam("file") MultipartFile image) {
+    public ResponseEntity<AddImageResp> Register(@RequestParam("file") MultipartFile image) {
         try {
-            Image result = imageService.save(image);
+            AddImageResp result = imageService.save(image);
             return ResponseEntity.status(HttpStatus.OK)
                     .body(result);
         } catch (Exception e) {
             logger.error(e.getMessage());
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new Image());
+                    .body(new AddImageResp());
         }
 
     }

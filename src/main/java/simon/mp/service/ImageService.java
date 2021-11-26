@@ -8,6 +8,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import simon.mp.entity.Image;
 import simon.mp.repo.ImageRepository;
+import simon.mp.reponse.AddImageResp;
 import simon.mp.util.FileUtil;
 
 import java.io.IOException;
@@ -35,7 +36,7 @@ public class ImageService {
         }
     }
 
-    public Image save(MultipartFile file) {
+    public AddImageResp save(MultipartFile file) {
         //generate uuid for the image file name
         init();
         String fileName = UUID.randomUUID().toString();
@@ -49,8 +50,17 @@ public class ImageService {
         Image image = new Image();
         image.setUuid(fileName);
         image.setImage_size(file.getSize());
-        image.setFile_path("data/images" + "/" + fileName  + "." + ext);
-        return imageRepository.save(image);
+        image.setFile_path("images" + "/" + fileName  + "." + ext);
+
+        try {
+            Image result = imageRepository.save(image);
+            AddImageResp resp = new AddImageResp();
+            resp.id = result.getId();
+            resp.url = "https://mp-api.simonyc.tech/" + result.getFile_path();
+            return  resp;
+        } catch (Exception e) {
+            throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
+        }
     }
 
     public Resource load(String filename) {
