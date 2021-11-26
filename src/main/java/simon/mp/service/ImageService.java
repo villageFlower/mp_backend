@@ -56,7 +56,7 @@ public class ImageService {
             Image result = imageRepository.save(image);
             AddImageResp resp = new AddImageResp();
             resp.id = result.getId();
-            resp.url = "https://mp-api.simonyc.tech/" + result.getFile_path();
+            resp.url = "https://mp-resource.simonyc.tech/" + result.getFile_path();
             return  resp;
         } catch (Exception e) {
             throw new RuntimeException("Could not store the file. Error: " + e.getMessage());
