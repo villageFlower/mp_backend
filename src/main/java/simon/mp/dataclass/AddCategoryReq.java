@@ -1,4 +1,4 @@
-package simon.mp.dto;
+package simon.mp.dataclass;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -13,11 +13,13 @@ import java.util.List;
 
 public class AddCategoryReq {
 
-    private String name;
+    public long id;
 
-    public Integer rank;
+    public String name;
+
+    public Integer arrange;
 
     public Boolean active;
 
-    public Integer image_id;
+    public long image_id;
 }

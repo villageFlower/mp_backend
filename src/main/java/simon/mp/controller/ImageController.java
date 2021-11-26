@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import simon.mp.APIList;
 import simon.mp.entity.Image;
 import simon.mp.repo.ImageRepository;
-import simon.mp.reponse.AddImageResp;
+import simon.mp.dataclass.AddImageResp;
 import simon.mp.service.ImageService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

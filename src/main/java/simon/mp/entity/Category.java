@@ -1,11 +1,13 @@
 package simon.mp.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -26,7 +28,7 @@ public class Category {
     private String name;
 
     @Column
-    private Integer rank;
+    private Integer arrange;
 
     @Column
     private Boolean active = false;
@@ -37,7 +39,7 @@ public class Category {
     private LocalDateTime created;
 
     @Column
-    @CreationTimestamp
+    @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
@@ -47,6 +49,6 @@ public class Category {
     private Image icon = null;
 
     @OneToMany(mappedBy = "category",cascade = {CascadeType.DETACH},fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<Product> products= new ArrayList<>();
 }

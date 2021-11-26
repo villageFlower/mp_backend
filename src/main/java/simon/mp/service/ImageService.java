@@ -8,7 +8,7 @@ import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 import simon.mp.entity.Image;
 import simon.mp.repo.ImageRepository;
-import simon.mp.reponse.AddImageResp;
+import simon.mp.dataclass.AddImageResp;
 import simon.mp.util.FileUtil;
 
 import java.io.IOException;

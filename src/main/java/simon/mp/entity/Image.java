@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.persistence.Entity;
@@ -39,11 +40,11 @@ public class Image {
     private LocalDateTime created;
 
     @Column
-    @CreationTimestamp
+    @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
+    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name="product_id")
     @JsonBackReference
     private Product product = null;

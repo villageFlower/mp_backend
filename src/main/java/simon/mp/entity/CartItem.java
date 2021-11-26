@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -36,16 +37,16 @@ public class CartItem {
     private LocalDateTime created;
 
     @Column
-    @CreationTimestamp
+    @UpdateTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.REFRESH})
+    @ManyToOne(cascade={CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name="user_id")
     @JsonBackReference
     private User user;
 
-    @ManyToOne(cascade={CascadeType.REFRESH})
+    @ManyToOne(cascade={CascadeType.REFRESH},fetch = FetchType.LAZY)
     @JoinColumn(name="order_id")
     @JsonBackReference
     private Order order = null;
