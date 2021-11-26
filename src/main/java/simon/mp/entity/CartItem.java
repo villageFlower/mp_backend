@@ -2,36 +2,33 @@ package simon.mp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "cart_item")
 @Entity
-@Table(name = "Image")
-
-public class Image {
-
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    private String uuid;
+    private Integer quantity;
 
     @Column
-    private String file_path;
-
-    @Column
-    private Long image_size;
+    private long product_id;
 
     @Column
     @CreationTimestamp
@@ -43,9 +40,13 @@ public class Image {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-    @JoinColumn(name="product_id")
+    @ManyToOne(cascade={CascadeType.REFRESH})
+    @JoinColumn(name="user_id")
     @JsonBackReference
-    private Product product = null;
+    private User user;
 
+    @ManyToOne(cascade={CascadeType.REFRESH})
+    @JoinColumn(name="order_id")
+    @JsonBackReference
+    private Order order = null;
 }

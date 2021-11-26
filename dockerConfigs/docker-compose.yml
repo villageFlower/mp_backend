@@ -46,13 +46,19 @@ services:
     privileged: true
     network_mode: "host"
 
+  staticfiles:
+    image: nginx
+    container_name: image_static
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+      - /mnt/static_volume:/var/mapped
+    ports:
+      - "8004:80"
+
   api:
     image: ghcr.io/villageflower/mp_simon:latest
     container_name: mp_api
+    volumes:
+      - /mnt/static_volume:/data
     ports:
       - 8888:8888
-    depends_on:
-      mysql:
-        condition: service_healthy
-      redis:
-        condition: service_healthy

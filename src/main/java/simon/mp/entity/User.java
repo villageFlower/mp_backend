@@ -1,6 +1,7 @@
 package simon.mp.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,6 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -41,16 +44,24 @@ public class User {
     @Column
     private String password;
 
-    @CreationTimestamp
     @Column
+    private String token;
+
+    @Column
+    @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime register_date;
+    private LocalDateTime created;
+
+    @Column
+    @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime updated;
 
     @Column
     private Integer user_type;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
-    private Image image = null;
+    @OneToMany(mappedBy = "user",cascade = {CascadeType.REFRESH},fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Address> addresses = new ArrayList<>();
 
 }

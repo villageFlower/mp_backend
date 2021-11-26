@@ -7,7 +7,7 @@ import simon.mp.entity.User;
 import simon.mp.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.UUID;
 import javax.persistence.EntityManager;
 import java.util.List;
 
@@ -62,6 +62,7 @@ public class UserService {
         user.setPhone_no(userData.getPhone_no());
         user.setUser_type(userData.getUser_type());
         user.setPassword(encoder.encode(userData.getPassword()));
+        user.setToken(UUID.randomUUID().toString().replace("-", ""));
         return userRepository.save(user);
     }
 

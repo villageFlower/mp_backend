@@ -9,10 +9,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 
 @SpringBootApplication(exclude = { SecurityAutoConfiguration.class })
-public class BeApplication {
+public class ShopApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(BeApplication.class, args);
+        SpringApplication.run(ShopApplication.class, args);
     }
 
     @Bean

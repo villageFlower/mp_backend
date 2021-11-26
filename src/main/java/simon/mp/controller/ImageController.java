@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import simon.mp.APIList;
-import simon.mp.BeApplication;
 import simon.mp.entity.Image;
 import simon.mp.repo.ImageRepository;
 import simon.mp.service.ImageService;

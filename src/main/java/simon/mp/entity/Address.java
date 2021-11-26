@@ -5,33 +5,41 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Columns;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "address")
 @Entity
-@Table(name = "Image")
-
-public class Image {
-
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    private String uuid;
+    private Integer postal_code;
 
     @Column
-    private String file_path;
+    private String street;
 
     @Column
-    private Long image_size;
+    private String propery_name = "";
+
+    @Column
+    private String level = "";
+
+    @Column
+    private String house_no = "";
+
+    @Column
+    private String receiver = "";
+
+    @Column String contact;
 
     @Column
     @CreationTimestamp
@@ -43,9 +51,8 @@ public class Image {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-    @JoinColumn(name="product_id")
+    @ManyToOne(cascade={CascadeType.REFRESH})
+    @JoinColumn(name="user_id")
     @JsonBackReference
-    private Product product = null;
-
+    private User user;
 }

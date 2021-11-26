@@ -1,37 +1,35 @@
 package simon.mp.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "category")
 @Entity
-@Table(name = "Image")
-
-public class Image {
-
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column
-    private String uuid;
+    private String name;
 
     @Column
-    private String file_path;
+    private Integer rank;
 
     @Column
-    private Long image_size;
+    private Boolean active = false;
 
     @Column
     @CreationTimestamp
@@ -43,9 +41,12 @@ public class Image {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.MERGE,CascadeType.REFRESH})
-    @JoinColumn(name="product_id")
-    @JsonBackReference
-    private Product product = null;
+    @OneToOne
+    @JsonManagedReference
+    @JoinColumn(name = "icon_id", referencedColumnName = "id")
+    private Image icon = null;
 
+    @OneToMany(mappedBy = "category",cascade = {CascadeType.DETACH},fetch = FetchType.LAZY)
+    @JsonManagedReference
+    private List<Product> products= new ArrayList<>();
 }
