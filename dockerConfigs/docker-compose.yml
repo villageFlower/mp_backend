@@ -62,3 +62,9 @@ services:
       - /mnt/static_volume:/data
     ports:
       - 8888:8888
+
+  admin:
+    image: ghcr.io/villageflower/mp_admin:latest
+    container_name: mp_admin
+    ports:
+      - 8898:80
