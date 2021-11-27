@@ -2,6 +2,7 @@ package simon.mp.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -43,12 +44,13 @@ public class Category {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JsonManagedReference
     @JoinColumn(name = "icon_id", referencedColumnName = "id")
     private Image icon = null;
 
-    @OneToMany(mappedBy = "category",cascade = {CascadeType.DETACH},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "category",cascade = {CascadeType.DETACH},fetch = FetchType.EAGER)
     @JsonBackReference
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private List<Product> products= new ArrayList<>();
 }

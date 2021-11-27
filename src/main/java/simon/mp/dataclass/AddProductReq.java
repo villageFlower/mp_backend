@@ -17,9 +17,9 @@ public class AddProductReq {
 
     public String name;
 
-    public String origial_price;
+    public Double original_price;
 
-    public String price;
+    public Double price;
 
     public Boolean published;
 

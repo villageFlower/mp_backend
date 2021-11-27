@@ -28,7 +28,7 @@ public class Product {
     private String name;
 
     @Column
-    private Double origial_price;
+    private Double original_price = 0.0;
 
     @Column
     private Double price;
@@ -52,12 +52,12 @@ public class Product {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime updated;
 
-    @ManyToOne(cascade={CascadeType.REFRESH})
+    @ManyToOne(cascade={CascadeType.REFRESH},fetch = FetchType.EAGER)
     @JoinColumn(name="category_id")
-    @JsonBackReference
+    @JsonManagedReference
     private Category category = null;
 
-    @OneToMany(mappedBy = "product",cascade = {CascadeType.ALL},fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "product",cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Image> images = new ArrayList<>();
 }

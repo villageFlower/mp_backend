@@ -16,6 +16,9 @@ public class APIList {
     //products related
     public static final String GET_ALL_PRODUCTS = "api/products";
     public static final String ADD_PRODUCT = "api/add-product";
+    public static final String UPDATE_PRODUCT = "api/update-product";
+    public static final String GET_PRODUCT_BY_ID = "api/product";
+    public static final String DELETE_PRODUCT_BY_ID = "api/delete-product";
 
     //image related
     public static final String UPLOAD_IMAGE = "api/upload-image";
@@ -30,4 +33,5 @@ public class APIList {
     public static final String ADD_CATEGORY = "api/add-category";
     public static final String UPDATE_CATEGORY = "api/update-category";
     public static final String DELETE_CATEGORY = "api/delete-category";
+
 }
