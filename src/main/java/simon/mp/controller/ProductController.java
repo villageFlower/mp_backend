@@ -37,7 +37,7 @@ public class ProductController {
             @RequestParam(required = false) String title,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = Constants.Page_Size) int size,
-            @RequestParam(name = "category_id",required = false) Long category_id
+            @RequestParam(name = "category_id",required = false, defaultValue = "-1") Long category_id
     ) {
         Pageable paging = PageRequest.of(page, size);
         return productService.getAllProducts(paging,category_id);
