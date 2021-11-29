@@ -56,6 +56,8 @@ services:
       - "8004:80"
 
   api:
+    depends_on:
+      - mysql
     image: ghcr.io/villageflower/mp_simon:latest
     container_name: mp_api
     volumes:
