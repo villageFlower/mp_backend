@@ -20,8 +20,6 @@ services:
       timeout: 20s
       interval: 10s
       retries: 20
-    networks:
-      - backend
 
   redis:
     image: redis:6.2
@@ -37,8 +35,6 @@ services:
       timeout: 20s
       interval: 10s
       retries: 20
-    networks:
-      - backend
 
   nginxWebUi-server:
     image: cym1102/nginxwebui:latest
@@ -66,8 +62,12 @@ services:
       - /mnt/static_volume:/data
     ports:
       - 8888:8888
-    networks:
-      - backend
+    environment:
+        db_url  : jdbc:mysql://mysql:3306/mp_shop?createDatabaseIfNotExist=true&serverTimezone=Asia/Singapore
+        db_username : simon
+        db_password : simon1001
+
+
 
   admin:
     image: ghcr.io/villageflower/mp_admin:latest
@@ -75,5 +75,3 @@ services:
     ports:
       - 8898:80
 
-networks:
-  backend:
