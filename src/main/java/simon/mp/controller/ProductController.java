@@ -32,6 +32,7 @@ public class ProductController {
 
     public static QProduct Qproduct = QProduct.product;
 
+    @CrossOrigin
     @GetMapping(APIList.GET_ALL_PRODUCTS)
     public Page<Product> GetAllProducts(
             @RequestParam(required = false) String title,
@@ -42,6 +43,8 @@ public class ProductController {
         Pageable paging = PageRequest.of(page, size);
         return productService.getAllProducts(paging,category_id);
     }
+
+    @CrossOrigin
     @GetMapping(APIList.DELETE_PRODUCT_BY_ID)
     public ResponseEntity<String> DeleteProductById(
             @RequestParam(name = "id",required = true) Long id
@@ -49,16 +52,19 @@ public class ProductController {
         return productService.deleteProductById(id);
     }
 
+    @CrossOrigin
     @PostMapping(APIList.ADD_PRODUCT)
     public Product addProduct(@RequestBody AddProductReq req){
         return productService.addProduct(req);
     }
 
+    @CrossOrigin
     @GetMapping(APIList.GET_PRODUCT_BY_ID)
     public Product getProduct(@RequestParam(required = false) long id){
         return productService.getProductById(id);
     }
 
+    @CrossOrigin
     @PostMapping(APIList.UPDATE_PRODUCT)
     public ResponseEntity<Product> updateProduct(@RequestBody UpdateProductReq req){
         return productService.editProduct(req);

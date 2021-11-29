@@ -12,7 +12,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       MYSQL_ROOT_PASSWORD: simon1001
-      MYSQL_DATABASE: 2m21479
+      MYSQL_DATABASE: mp_shop
       MYSQL_USER: simon
       MYSQL_PASSWORD: simon1001
     healthcheck:

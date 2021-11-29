@@ -23,12 +23,13 @@ public class UserController {
     private UserRepository userRepository;
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-
+    @CrossOrigin
     @GetMapping(APIList.GET_ALL_USERS)
     public List<User> findAllUsers() {
         return service.getAllUsers();
     }
 
+    @CrossOrigin
     @PostMapping(APIList.ADD_USER)
     public ResponseEntity<User> Register(@RequestBody User user) {
         try {
@@ -46,6 +47,7 @@ public class UserController {
         }
     }
 
+    @CrossOrigin
     @PostMapping(APIList.LOGIN_USER)
     public ResponseEntity<User> Login(@RequestBody User user) {
         Integer result = service.LoginByEmail(user);
@@ -59,12 +61,14 @@ public class UserController {
         }
     }
 
+    @CrossOrigin
     @Transactional
     @PostMapping(APIList.UPDATE_USER_BY_ID)
     public User updateProduct(@RequestBody User user, @PathVariable long Id) {
         return service.updateUserById(Id, user);
     }
 
+    @CrossOrigin
     @Transactional
     @DeleteMapping(APIList.DELETE_USER_BY_ID)
     public ResponseEntity<Void> deleteProduct(@PathVariable long Id) {

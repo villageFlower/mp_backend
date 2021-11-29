@@ -23,11 +23,13 @@ public class AdminUserController {
     AdminUserService adminUserService;
     private static final Logger logger = LoggerFactory.getLogger(AdminUserController.class);
 
+    @CrossOrigin
     @PostMapping(APIList.ADD_ADMIN_USER)
     public ResponseEntity<List<AdminUser>> RegisterAdminUser(@RequestBody AdminUser user) {
         return adminUserService.registerAdminUser(user);
     }
 
+    @CrossOrigin
     @PostMapping(APIList.ADMIN_LOGIN)
     public ResponseEntity<String> AdminLogin(@RequestBody AdminUser user) {
         return adminUserService.LoginByEmail(user);

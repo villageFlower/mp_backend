@@ -25,6 +25,7 @@ public class ImageController {
     private static final Logger logger = LoggerFactory.getLogger(ImageController.class);
 
 
+    @CrossOrigin
     @PostMapping(APIList.UPLOAD_IMAGE)
     public ResponseEntity<AddImageResp> Register(@RequestParam("file") MultipartFile image) {
         try {
