@@ -60,7 +60,7 @@ public class ProductController {
 
     @CrossOrigin
     @GetMapping(APIList.GET_PRODUCT_BY_ID)
-    public Product getProduct(@RequestParam(required = false) long id){
+    public Product getProduct(@RequestParam(name = "id",required = false) Long id){
         return productService.getProductById(id);
     }
 
