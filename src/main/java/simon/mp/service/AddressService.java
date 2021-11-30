@@ -50,7 +50,7 @@ public class AddressService {
 
     public ResponseEntity<Address> getDefaultAdressById(Long user_id) {
 
-        Address address = addressRepository.findADeafaultByUserid(user_id).orElse(null);
+        Address address = addressRepository.findDefaultByUserid(user_id).orElse(null);
         if(address == null){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(address);
         }

@@ -17,5 +17,5 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     @Query(value = "SELECT * FROM address WHERE user_id = ?1 AND is_default = true ",
             nativeQuery = true)
-    Optional<Address> findADeafaultByUserid(Long user_id);
+    Optional<Address> findDefaultByUserid(Long user_id);
 }
