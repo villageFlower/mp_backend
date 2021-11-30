@@ -32,7 +32,7 @@ public class AddressController {
     }
 
     @PostMapping(APIList.ADDRESS_COMMON)
-    public Address AddAddress(AddAddressReq req) {
+    public Address AddAddress(@RequestBody AddAddressReq req) {
         return addressService.addAddress(req);
     }
 }
