@@ -2,6 +2,8 @@ package simon.mp;
 
 public class APIList {
 
+    public static final String TEST = "api/test";
+
     //user related
     public static final String GET_ALL_USERS = "api/users";
     public static final String DELETE_USER_BY_ID = "api/delete-user/{Id}";
