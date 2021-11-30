@@ -21,4 +21,5 @@ public interface ProductsListDto {
     Category getCategory();
     List<Image> getImages();
     Boolean getPublished();
+    LocalDateTime getCreated();
 }
