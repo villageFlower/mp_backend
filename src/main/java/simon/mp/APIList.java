@@ -29,6 +29,7 @@ public class APIList {
     public static final String ADD_CATEGORY = "api/add-category";
     public static final String UPDATE_CATEGORY = "api/update-category";
     public static final String DELETE_CATEGORY = "api/delete-category";
+    public static final String GET_CATEGORY_BY_ID = "api/category-by-id";
 
     //address related
     public static final String ADDRESS_COMMON = "api/address";
@@ -39,4 +40,5 @@ public class APIList {
     //address related
     public static final String ORDER_COMMON = "api/order";
     public static final String ORDERS_COMMON = "api/orders";
+
 }
