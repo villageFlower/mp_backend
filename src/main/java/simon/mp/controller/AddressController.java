@@ -50,7 +50,7 @@ public class AddressController {
     }
 
     @CrossOrigin
-    @PostMapping(APIList.UPDATE_ADDRESS_BY_ID)
+    @PostMapping(APIList.GET_DEFAULT_ADDRESS_BY_ID)
     public Address UpdateAddress(@RequestBody AddAddressReq req) {
         return addressService.updateAddress(req);
     }

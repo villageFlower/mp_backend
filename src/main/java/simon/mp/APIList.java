@@ -34,7 +34,7 @@ public class APIList {
     public static final String ADDRESS_COMMON = "api/address";
     public static final String UPDATE_ADDRESS_BY_ID = "api/updateAddressById";
     public static final String GET_ADDRESS_BY_ID = "api/addressById";
-
+    public static final String GET_DEFAULT_ADDRESS_BY_ID = "api/getDefaultAddress";
 
     //address related
     public static final String ORDER_COMMON = "api/order";
