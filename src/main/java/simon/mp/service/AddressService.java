@@ -1,6 +1,8 @@
 package simon.mp.service;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,6 +35,8 @@ public class AddressService {
         jpaQueryFactory = new JPAQueryFactory(entityManager);
     }
     public static QAddress qAddress = QAddress.address;
+
+    Logger logger = LoggerFactory.getLogger(AddressService.class);
 
     public List<Address> getUserAdresses(Long user_id) {
         return addressRepository.findAllByUserid(user_id);
