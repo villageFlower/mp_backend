@@ -8,10 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import simon.mp.dataclass.AddAddressReq;
 import simon.mp.dataclass.AddOrderReq;
-import simon.mp.entity.Address;
-import simon.mp.entity.Order;
-import simon.mp.entity.QAddress;
-import simon.mp.entity.User;
+import simon.mp.entity.*;
 import simon.mp.repo.AddressRepository;
 import simon.mp.repo.OrderRepository;
 import simon.mp.repo.ProductRepository;
@@ -49,13 +46,16 @@ public class OrderService {
     }
 
     public Order addOrder(AddOrderReq req){
+        Product product = productRepository.findById(req.product_id).orElse(null);
         Order order = new Order();
         order.setQuantity(req.quantity);
         order.setAddress(addressRepository.findById(req.address_id).orElse(null));
         order.setUser(userRepository.findById(req.user_id).orElse(null));
-        order.setProduct(productRepository.findById(req.product_id).orElse(null));
+        order.setProduct(product);
         order.setPrice(req.price);
         orderRepository.save(order);
+        product.setStock(product.getStock()-req.quantity);
+        productRepository.save(product);
         return order;
     }
 }
