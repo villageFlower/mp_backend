@@ -25,5 +25,5 @@ public class AddAddressReq {
 
     public String contact;
 
-    public Long user_id;
+    public long user_id;
 }
