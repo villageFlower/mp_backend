@@ -47,9 +47,9 @@ public class OrderService {
     public Order addOrder(AddOrderReq req){
         Order order = new Order();
         order.setQuantity(req.quantity);
-        order.setAddress_id(req.address_id);
+        order.setAddress(addressRepository.findById(req.address_id).orElse(null));
         order.setUser(userRepository.findById(req.user_id).orElse(null));
-        order.setProduct_id(req.product_id);
+        order.setProduct(productRepository.findById(req.product_id).orElse(null));
         order.setPrice(req.price);
         orderRepository.save(order);
         return order;
