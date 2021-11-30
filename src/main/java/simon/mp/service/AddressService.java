@@ -47,6 +47,13 @@ public class AddressService {
     }
 
     public Address addAddress(AddAddressReq req){
+        if(req.is_default){
+            List<Address> exsitedAddress = this.getUserAdresses(req.user_id);
+            exsitedAddress.forEach(address -> {
+                address.setIs_default(false);
+                addressRepository.save(address);
+            });
+        }
         Address address = new Address();
         address.setPostal_code(req.postal_code);
         address.setIs_default(req.is_default);
