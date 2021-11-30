@@ -20,4 +20,5 @@ public interface ProductsListDto {
     Integer getStock();
     Category getCategory();
     List<Image> getImages();
+    Boolean getPublished();
 }
