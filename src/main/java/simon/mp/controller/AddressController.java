@@ -36,7 +36,7 @@ public class AddressController {
     }
 
     @CrossOrigin
-    @GetMapping(APIList.GET_ADDRESS_BY_ID)
+    @GetMapping(APIList.GET_DEFAULT_ADDRESS_BY_ID)
     public ResponseEntity<Address> GetDefaultAddressById(
             @RequestParam(name = "user_id",required = false) Long user_id
     ) {
@@ -50,7 +50,7 @@ public class AddressController {
     }
 
     @CrossOrigin
-    @PostMapping(APIList.GET_DEFAULT_ADDRESS_BY_ID)
+    @PostMapping(APIList.UPDATE_ADDRESS_BY_ID)
     public Address UpdateAddress(@RequestBody AddAddressReq req) {
         return addressService.updateAddress(req);
     }
