@@ -28,9 +28,6 @@ public class Order {
     private Integer quantity;
 
     @Column
-    private long product_id;
-
-    @Column
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime created;
@@ -46,6 +43,14 @@ public class Order {
     private User user;
 
     @OneToMany(mappedBy = "order",cascade = {CascadeType.REFRESH},fetch = FetchType.LAZY)
-    @JsonManagedReference
+    @JsonBackReference
     private List<CartItem> items = new ArrayList<>();
+
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }

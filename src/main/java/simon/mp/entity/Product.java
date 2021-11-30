@@ -60,4 +60,7 @@ public class Product {
     @OneToMany(mappedBy = "product",cascade = {CascadeType.ALL},fetch = FetchType.EAGER)
     @JsonManagedReference
     private List<Image> images = new ArrayList<>();
+
+    @OneToOne(mappedBy = "product")
+    private Order order;
 }
