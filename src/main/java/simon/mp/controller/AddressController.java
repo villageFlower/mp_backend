@@ -39,8 +39,15 @@ public class AddressController {
             return addressService.getAdressById(address_id);
     }
 
+    @CrossOrigin
     @PostMapping(APIList.ADDRESS_COMMON)
     public Address AddAddress(@RequestBody AddAddressReq req) {
         return addressService.addAddress(req);
+    }
+
+    @CrossOrigin
+    @PostMapping(APIList.UPDATE_ADDRESS_BY_ID)
+    public Address UpdateAddress(@RequestBody AddAddressReq req) {
+        return addressService.updateAddress(req);
     }
 }

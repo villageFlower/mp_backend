@@ -60,4 +60,17 @@ public class AddressService {
         return address;
     }
 
+    public Address updateAddress(AddAddressReq req){
+        Address address = addressRepository.findById(req.id).orElse(null);
+        address.setPostal_code(req.postal_code);
+        address.setIs_default(req.is_default);
+        address.setDetail(req.detail);
+        address.setLevel(req.level);
+        address.setHouse_no(req.house_no);
+        address.setReceiver(req.receiver);
+        address.setContact(req.contact);
+        addressRepository.save(address);
+        return address;
+    }
+
 }

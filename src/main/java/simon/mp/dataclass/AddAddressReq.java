@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 
 public class AddAddressReq {
 
+    public long id;
+
     public Integer postal_code;
 
     public Boolean is_default;
