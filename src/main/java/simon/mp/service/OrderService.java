@@ -50,6 +50,7 @@ public class OrderService {
         order.setAddress(addressRepository.findById(req.address_id).orElse(null));
         order.setUser(userRepository.findById(req.user_id).orElse(null));
         order.setProduct(productRepository.findById(req.product_id).orElse(null));
+        order.setPrice(req.price);
         orderRepository.save(order);
         return order;
     }

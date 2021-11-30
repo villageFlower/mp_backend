@@ -28,6 +28,10 @@ public class Order {
     private Integer quantity;
 
     @Column
+    private Double price;
+
+
+    @Column
     @CreationTimestamp
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime created;

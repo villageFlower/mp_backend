@@ -23,4 +23,6 @@ public class AddOrderReq {
     public Long address_id;
 
     public Long product_id;
+
+    public Double price;
 }
