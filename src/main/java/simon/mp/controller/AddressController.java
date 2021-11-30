@@ -31,6 +31,14 @@ public class AddressController {
         return addressService.getUserAdresses(user_id);
     }
 
+    @CrossOrigin
+    @GetMapping(APIList.GET_ADDRESS_BY_ID)
+    public Address GetAddressById(
+            @RequestParam(name = "address_id",required = false) Long address_id
+    ) {
+            return addressService.getAdressById(address_id);
+    }
+
     @PostMapping(APIList.ADDRESS_COMMON)
     public Address AddAddress(@RequestBody AddAddressReq req) {
         return addressService.addAddress(req);

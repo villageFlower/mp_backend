@@ -42,6 +42,10 @@ public class AddressService {
         return addressRepository.findAllByUserid(user_id);
     }
 
+    public Address getAdressById(Long address_id) {
+        return addressRepository.findById(address_id).orElse(null);
+    }
+
     public Address addAddress(AddAddressReq req){
         Address address = new Address();
         address.setPostal_code(req.postal_code);

@@ -12,5 +12,5 @@ import java.util.List;
 public interface AddressRepository extends JpaRepository<Address, Long> {
     @Query(value = "SELECT * FROM address WHERE user_id = ?1",
             nativeQuery = true)
-    List<Address> findAllByUserid(Long category);
+    List<Address> findAllByUserid(Long user_id);
 }
