@@ -67,12 +67,6 @@ public class OrderService {
     }
 
     private String template = """
-                <!DOCTYPE html>
-                <html lang="en">
-                  <head>
-                    <meta charset="utf-8" />
-                    <meta name="viewport" content="width=device-width, initial-scale=1" />
-                    <title>Invoice</title>
                     <style>
                       body {
                         font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -108,7 +102,7 @@ public class OrderService {
                         color: #555;
                       }
                       .invoice-box table {
-                        width: 100%;
+                        width: 100\%;
                         line-height: inherit;
                         text-align: left;
                         border-collapse: collapse;
@@ -151,12 +145,12 @@ public class OrderService {
                       }
                       @media only screen and (max-width: 600px) {
                         .invoice-box table tr.top table td {
-                          width: 100%;
+                          width: 100\%;
                           display: block;
                           text-align: center;
                         }
                         .invoice-box table tr.information table td {
-                          width: 100%;
+                          width: 100\%;
                           display: block;
                           text-align: center;
                         }
