@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import simon.mp.dataclass.AddAddressReq;
@@ -44,6 +46,16 @@ public class AddressService {
 
     public Address getAdressById(Long address_id) {
         return addressRepository.findById(address_id).orElse(null);
+    }
+
+    public ResponseEntity<Address> getDefaultAdressById(Long user_id) {
+
+        Address address = addressRepository.findADeafaultByUserid(user_id).orElse(null);
+        if(address == null){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(address);
+        }
+
+        return ResponseEntity.status(HttpStatus.OK).body(address);
     }
 
     public Address addAddress(AddAddressReq req){

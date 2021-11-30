@@ -8,9 +8,14 @@ import simon.mp.entity.Address;
 import simon.mp.entity.Product;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
     @Query(value = "SELECT * FROM address WHERE user_id = ?1",
             nativeQuery = true)
     List<Address> findAllByUserid(Long user_id);
+
+    @Query(value = "SELECT * FROM address WHERE user_id = ?1 AND is_default = true ",
+            nativeQuery = true)
+    Optional<Address> findADeafaultByUserid(Long user_id);
 }

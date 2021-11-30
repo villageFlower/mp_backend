@@ -1,16 +1,12 @@
 package simon.mp.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import simon.mp.APIList;
 import simon.mp.dataclass.AddAddressReq;
 import simon.mp.entity.Address;
-import simon.mp.entity.Product;
 import simon.mp.service.AddressService;
-import simon.mp.util.Constants;
 
 import java.util.List;
 
@@ -40,6 +36,14 @@ public class AddressController {
     }
 
     @CrossOrigin
+    @GetMapping(APIList.GET_ADDRESS_BY_ID)
+    public ResponseEntity<Address> GetDefaultAddressById(
+            @RequestParam(name = "user_id",required = false) Long user_id
+    ) {
+        return addressService.getDefaultAdressById(user_id);
+    }
+
+    @CrossOrigin
     @PostMapping(APIList.ADDRESS_COMMON)
     public Address AddAddress(@RequestBody AddAddressReq req) {
         return addressService.addAddress(req);
@@ -50,4 +54,6 @@ public class AddressController {
     public Address UpdateAddress(@RequestBody AddAddressReq req) {
         return addressService.updateAddress(req);
     }
+
+
 }
