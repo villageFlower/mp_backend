@@ -40,7 +40,7 @@ public class CategoryController {
     }
 
     @CrossOrigin
-    @GetMapping(APIList.ADD_CATEGORY)
+    @GetMapping(APIList.GET_ALL_CETEGORIES)
     public Optional<Category> GetCategoriesById(
             @RequestParam(name = "category_id",required = false) Long category_id
     ) {
