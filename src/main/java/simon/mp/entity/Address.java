@@ -26,10 +26,7 @@ public class Address {
     private Integer postal_code;
 
     @Column
-    private String street;
-
-    @Column
-    private String propery_name = "";
+    private String detail = "";
 
     @Column
     private String level = "";
@@ -40,7 +37,11 @@ public class Address {
     @Column
     private String receiver = "";
 
-    @Column String contact;
+    @Column
+    String contact;
+
+    @Column
+    private Boolean is_default = false;
 
     @Column
     @CreationTimestamp

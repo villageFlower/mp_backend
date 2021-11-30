@@ -13,9 +13,9 @@ public class AddAddressReq {
 
     public Integer postal_code;
 
-    public String street;
+    public Boolean is_default;
 
-    public String propery_name;
+    public String detail;
 
     public String level = "";
 

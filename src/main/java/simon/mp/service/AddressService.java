@@ -41,8 +41,8 @@ public class AddressService {
     public Address addAddress(AddAddressReq req){
         Address address = new Address();
         address.setPostal_code(req.postal_code);
-        address.setStreet(req.street);
-        address.setPropery_name(req.propery_name);
+        address.setIs_default(req.is_default);
+        address.setDetail(req.detail);
         address.setLevel(req.level);
         address.setHouse_no(req.house_no);
         address.setReceiver(req.receiver);
