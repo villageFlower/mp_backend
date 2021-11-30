@@ -13,6 +13,7 @@ import simon.mp.APIList;
 import simon.mp.dataclass.AddCategoryReq;
 import simon.mp.dataclass.AddProductReq;
 import simon.mp.dataclass.UpdateProductReq;
+import simon.mp.dto.ProductsListDto;
 import simon.mp.entity.Image;
 import simon.mp.entity.Product;
 import simon.mp.entity.QProduct;
@@ -34,7 +35,7 @@ public class ProductController {
 
     @CrossOrigin
     @GetMapping(APIList.GET_ALL_PRODUCTS)
-    public Page<Product> GetAllProducts(
+    public Page<ProductsListDto> GetAllProducts(
             @RequestParam(required = false) String title,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = Constants.Page_Size) int size,
