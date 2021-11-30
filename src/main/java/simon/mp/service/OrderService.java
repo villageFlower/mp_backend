@@ -173,8 +173,8 @@ public class OrderService {
                                 <td class="title">
                                 </td>
                                 <td>
-                                  Invoice #: {id}<br />
-                                  {created}<br />
+                                  Invoice #: %1s<br />
+                                  %2s<br />
                                 </td>
                               </tr>
                             </table>
@@ -185,12 +185,12 @@ public class OrderService {
                           <td>Price</td>
                         </tr>
                         <tr class="item">
-                          <td>{name}</td>
-                          <td>S${price} x {quantaty}</td>
+                          <td>%3s</td>
+                          <td>S$ %4s x %5s</td>
                         </tr>
                         <tr class="total">
                           <td></td>
-                          <td>Total: ${total}</td>
+                          <td>Total: S$%6s</td>
                         </tr>
                       </table>
                     </div>
