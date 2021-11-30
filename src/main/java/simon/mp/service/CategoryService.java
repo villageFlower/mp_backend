@@ -16,8 +16,8 @@ import simon.mp.repo.CategoryRepository;
 import simon.mp.repo.ImageRepository;
 import simon.mp.util.Constants;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CategoryService {
@@ -52,6 +52,9 @@ public class CategoryService {
 
         Category result = categoryRepository.save(category);
         return ResponseEntity.status(HttpStatus.CREATED).body(result);
+    }
+    public Optional<Category> GetCategoryById(Long id){
+        return categoryRepository.findById(id);
     }
 
     public ResponseEntity<Category> UpdateCategoryById(AddCategoryReq categoryReq){

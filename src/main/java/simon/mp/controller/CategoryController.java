@@ -13,6 +13,7 @@ import simon.mp.service.CategoryService;
 import simon.mp.util.Constants;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -36,6 +37,14 @@ public class CategoryController {
     public List<Category> GetAllCategories(
     ) {
         return categoryService.getAllCategoriesList();
+    }
+
+    @CrossOrigin
+    @GetMapping(APIList.ADD_CATEGORY)
+    public Optional<Category> GetCategoriesById(
+            @RequestParam(name = "category_id",required = false) Long category_id
+    ) {
+        return categoryService.GetCategoryById(category_id);
     }
 
     @CrossOrigin
