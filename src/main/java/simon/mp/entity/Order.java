@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "order")
+@Table(name = "\"order\"")
 @Entity
 public class Order {
     @Id
@@ -30,11 +30,6 @@ public class Order {
     @Column
     private Double price;
 
-    @Column
-    private long product_id;
-
-    @Column
-    private long address_id;
 
     @Column
     @CreationTimestamp
@@ -55,11 +50,11 @@ public class Order {
     @JsonBackReference
     private List<CartItem> items = new ArrayList<>();
 
-//    @OneToOne(cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "address_id", referencedColumnName = "id")
-//    private Address address;
-//
-//    @OneToOne(cascade = CascadeType.REFRESH)
-//    @JoinColumn(name = "product_id", referencedColumnName = "id")
-//    private Product product;
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "product_id", referencedColumnName = "id")
+    private Product product;
 }
