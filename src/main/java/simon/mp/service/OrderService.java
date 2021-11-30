@@ -67,6 +67,9 @@ public class OrderService {
     }
 
     private String template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
                     <style>
                       body {
                         font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
@@ -156,7 +159,7 @@ public class OrderService {
                         }
                       }
                     </style>
-                  </head>
+                </head>
                   <body>
                     <div class="invoice-box">
                       <table>
