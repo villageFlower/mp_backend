@@ -38,4 +38,5 @@ public class APIList {
 
     //address related
     public static final String ORDER_COMMON = "api/order";
+    public static final String ORDERS_COMMON = "api/orders";
 }

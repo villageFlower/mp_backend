@@ -11,6 +11,7 @@ import simon.mp.dataclass.AddOrderReq;
 import simon.mp.entity.Address;
 import simon.mp.entity.Order;
 import simon.mp.entity.QAddress;
+import simon.mp.entity.User;
 import simon.mp.repo.AddressRepository;
 import simon.mp.repo.OrderRepository;
 import simon.mp.repo.ProductRepository;
@@ -43,6 +44,9 @@ public class OrderService {
 
     Logger logger = LoggerFactory.getLogger(OrderService.class);
 
+    public List<Order> getUserOrder(Long user_id){
+        return orderRepository.findByUserid(user_id);
+    }
 
     public Order addOrder(AddOrderReq req){
         Order order = new Order();
