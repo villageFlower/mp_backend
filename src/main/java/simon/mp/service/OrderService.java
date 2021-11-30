@@ -102,7 +102,7 @@ public class OrderService {
                         color: #555;
                       }
                       .invoice-box table {
-                        width: 100\%;
+                        width: 100%%;
                         line-height: inherit;
                         text-align: left;
                         border-collapse: collapse;
@@ -145,12 +145,12 @@ public class OrderService {
                       }
                       @media only screen and (max-width: 600px) {
                         .invoice-box table tr.top table td {
-                          width: 100\%;
+                          width: 100%%;
                           display: block;
                           text-align: center;
                         }
                         .invoice-box table tr.information table td {
-                          width: 100\%;
+                          width: 100%%;
                           display: block;
                           text-align: center;
                         }
