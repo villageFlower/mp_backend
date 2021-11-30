@@ -30,4 +30,7 @@ public class APIList {
     public static final String UPDATE_CATEGORY = "api/update-category";
     public static final String DELETE_CATEGORY = "api/delete-category";
 
+    //address related
+    public static final String ADDRESS_COMMON = "api/address";
+
 }

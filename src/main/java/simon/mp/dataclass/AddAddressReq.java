@@ -1,0 +1,29 @@
+package simon.mp.dataclass;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import simon.mp.entity.User;
+
+import javax.persistence.*;
+import java.time.LocalDateTime;
+
+public class AddAddressReq {
+
+    public Integer postal_code;
+
+    public String street;
+
+    public String propery_name;
+
+    public String level = "";
+
+    public String house_no = "";
+
+    public String receiver = "";
+
+    public String contact;
+
+    public Long user_id;
+}
