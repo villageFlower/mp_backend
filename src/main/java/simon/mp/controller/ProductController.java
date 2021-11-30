@@ -35,7 +35,7 @@ public class ProductController {
 
     @CrossOrigin
     @GetMapping(APIList.GET_ALL_PRODUCTS)
-    public Page<ProductsListDto> GetAllProducts(
+    public Page<Product> GetAllProducts(
             @RequestParam(required = false) String title,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = Constants.Page_Size) int size,

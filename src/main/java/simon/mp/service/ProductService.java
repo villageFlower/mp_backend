@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import simon.mp.dataclass.AddProductReq;
 import simon.mp.dataclass.UpdateProductReq;
-import simon.mp.dto.ProductsListDto;
 import simon.mp.entity.Image;
 import simon.mp.entity.Product;
 import simon.mp.entity.QProduct;
@@ -46,14 +45,13 @@ public class ProductService {
 
     public static QProduct Qproduct = QProduct.product;
 
-    public Page<ProductsListDto> getAllProducts(Pageable page, Long category_id) {
+    public Page<Product> getAllProducts(Pageable page,Long category_id) {
         logger.info(String.valueOf(category_id));
         if (category_id>0){
             return productRepository.findAllByCategory(category_id,page);
         }
         return productRepository.findAllByOrderByCreatedDesc(page);
     }
-
     public Product getProductById(long id){
         return  productRepository.getById(id);
     }

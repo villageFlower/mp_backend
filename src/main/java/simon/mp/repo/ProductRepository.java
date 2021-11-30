@@ -11,11 +11,11 @@ import simon.mp.util.Constants;
 
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    Page<ProductsListDto> findAllByOrderByCreatedDesc(Pageable pageable);
+    Page<Product> findAllByOrderByCreatedDesc(Pageable pageable);
 
     @Query(value = "SELECT * FROM product WHERE category_id = ?1",
             countQuery = "SELECT count(*) FROM product category_id = ?1",
             nativeQuery = true)
-    Page<ProductsListDto> findAllByCategory(Long category, Pageable pageable);
+    Page<Product> findAllByCategory(Long category, Pageable pageable);
 
 }
